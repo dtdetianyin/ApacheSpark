@@ -1,1 +1,30 @@
+This file will show to install apache spark on linux 
+
+Step 1. Befor install make sure java is installed
+$ java -version
+
+Step 2. Download Apache spark 
+From https://spark.apache.org/downloads.html, choose the proper version of spark
+Copy the link provided on the download page
+
+$ wget https://downloads.apache.org/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+
+Step 3. Unzip the file, rename it and move it under opt folder
+
+$ tar xvf spark-2.4.5-bin-hadoop2.7.tgz
+$ sudo mv spark-2.4.5-bin-hadoop2.7/ /opt/spark
+
+Step 4. Set Spark Environment
+edit the bashrc file, add the paths as followings in the file 
+$ vim ~/.bashrc
+
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+
+Step 5. Using Sparkshell
+
+For python use pyspark
+
+$ pyspark
+
 
