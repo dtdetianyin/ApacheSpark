@@ -20,7 +20,7 @@ $ vim ~/.bashrc
 
 export SPARK_HOME=/opt/spark
 export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
-
+source ~/.profile
 Step 5. Using Sparkshell
 
 For python use pyspark
