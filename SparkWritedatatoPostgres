@@ -1,0 +1,45 @@
+This file shows the steps to load web with spark into Posgresql database
+
+1.first lauching pyshark with jdbc config information
+pyspark --driver-class-path /opt/spark/jars/postgresql-42.2.12.jar --jars /opt/spark/jars/postgresql-42.2.12.jar
+
+
+2.drop the table if it already exits
+
+import psycopg2 as p2
+conn = p2.connect("host=localhost dbname =test user=detian password='p31415926'")
+cur = conn.cursor()
+cur.execute(""" drop table test.germanydata""")
+conn.commit()
+
+2. Then process data  from rest api 
+
+import requests
+import json
+from pyspark.sql import Row
+from collections import OrderedDict
+from pyspark import SparkContext
+from collections import OrderedDict
+#Assign URL
+URL = "https://api.covid19api.com/country/germany/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-05-01T00:00:00Z"
+r = requests.get(url =URL)
+data = r.json()
+#define a function to parse json file to row 
+def convert_to_row(d: dict) -> Row: 
+    return Row(**OrderedDict(sorted(d.items())))
+ 
+ #convert the data to a dataframe
+ df=sc.parallelize(data).map(convert_to_row).toDF()
+ #use only some of the columns 
+ jdbcDF=df.select("Cases", "Country", "Date","Status")
+
+3.write data to postgres
+
+jdbcDF.write \
+    .format("jdbc") \
+    .option("url", "jdbc:postgresql://localhost:5432/test") \
+    .option("dbtable", "test.germanydata") \
+    .option("user", "detian") \
+    .option("password", "p31415926") \
+    .save()
+    
