@@ -1,0 +1,21 @@
+1.
+lauch spark session
+pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.4
+
+2. start kafka and create topic with name "py"
+sudo systemctl start confluent-kafka
+sudo systemctl enable confluent-kafka
+
+kafka-topics --bootstrap-server localhost:9092 --create --topic py --partitions 1 --replication-factor 1
+
+3.create kafka producer use python 
+see :
+https://github.com/dtdetianyin/ApacheKafka/blob/master/Corona19%20Data%20processed%20with%20ApacheKafka%20and%20Python/pyProducer.ipynb
+
+4.create dataframe to read from topic 
+
+df = spark.readStream.format("kafka").option("kafka.bootstrap.servers", "localhost:9092").option("subscribe", "py").load()
+
+df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
+
+df.writeStream.format("console").start()
