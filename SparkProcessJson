@@ -1,0 +1,20 @@
+1.use rdd
+
+ rdd =sc.textFile("/home/cloud_user/update.json")
+rdd.collect
+(***
+before use the method, make sure the file is json using dumps
+import json
+with open('data.txt') as json_file:
+    data = json.load(json_file)
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)   
+***)
+
+2 user dataframe, and write to csv, in order to save into csv, the data should be flatted
+
+df=spark.read.json('/home/cloud_user/update.json')
+df1=df.select("Resources.catpics.*")
+df1.write.csv("/home/cloud_user/my.csv")
+df2 =spark.read.csv("/home/cloud_user/my.csv")
+df3=df2.selectExpr("_c0 as name")
