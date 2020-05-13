@@ -13,4 +13,4 @@ rdd.take(4)
 5. save as a file
 rdd.saveAsTextFile("/home/cloud_user/test/rddfile")
 
-
+RDD are normally slower as dataframes
