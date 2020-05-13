@@ -1,0 +1,2 @@
+sc=spark.sparkContext
+ff= sc.textFile("ftp://anonymous:anonymous@speedtest.tele2.net/1KB.zip")
