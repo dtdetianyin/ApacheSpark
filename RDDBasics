@@ -1,0 +1,16 @@
+1. load from test file
+rdd = sc.textFile('/home/cloud_user/test/002109.SZ.csv')
+
+2.show all elements
+rdd.collect()
+
+3. show some of the elements
+rdd.take(4)
+
+4. return the number of elements in 
+ rdd.count()
+ 
+5. save as a file
+rdd.saveAsTextFile("/home/cloud_user/test/rddfile")
+
+
