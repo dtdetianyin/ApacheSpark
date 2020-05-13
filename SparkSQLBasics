@@ -1,0 +1,27 @@
+
+1. create a temp table, rename   
+df = spark.read.csv("/home/cloud_user/test/002109.SZ.csv")
+df = df.withColumnRenamed('_c2','Close')
+...
+
+** if a view exists  spark.catalog.dropTempView("dfView")***
+2. filter data, use where
+ df.filter("Date=='2015-05-05'").show()
+ spark.sql("select Date from dfView where Open >= 6.54").show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_SQL_Cheat_Sheet_Python.pdf 
