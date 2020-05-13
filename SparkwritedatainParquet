@@ -1,0 +1,7 @@
+csv to parquet
+
+start pyspark, import sparksession
+from pyspark.sql import SparkSession
+df = spark.read.csv('/home/cloud_user/test/002109.SZ.csv', header = True)
+df=df.drop("Adj Close")
+df.repartition(2).write.mode('overwrite').parquet('/home/cloud_user/test/testparquet')
