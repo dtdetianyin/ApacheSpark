@@ -20,6 +20,8 @@ from pyspark.sql import Row
 from collections import OrderedDict
 from pyspark import SparkContext
 from collections import OrderedDict
+sc = spark.sparkContext
+
 #Assign URL
 URL = "https://api.covid19api.com/country/germany/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-05-01T00:00:00Z"
 r = requests.get(url =URL)
