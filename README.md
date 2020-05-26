@@ -10,3 +10,5 @@ In this repository basic ETLs of Spark are shown.
 
 4.[Extract data from Kafka](https://github.com/dtdetianyin/ApacheSpark/blob/master/SparkgetfromKafka)
 
+5.[Process multiple Level json](https://github.com/dtdetianyin/ApacheSpark/blob/master/SparkMultilevelJson)
+
